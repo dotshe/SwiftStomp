@@ -524,8 +524,8 @@ fileprivate extension SwiftStomp{
 
 /// Web socket delegate
 extension SwiftStomp : WebSocketDelegate{
-    
-    public func didReceive(event: WebSocketEvent, client: WebSocket) {
+
+    public func didReceive(event: WebSocketEvent, client: WebSocketClient) {
         switch event {
         case .connected(let headers):
             self.status = .socketConnected
