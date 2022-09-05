@@ -108,6 +108,7 @@ public class SwiftStomp{
     /// It's not a weak delegate - please make sure you avoid retain cycles!
     public var delegate : SwiftStompDelegate? // WARNING - It's not a weak delegate!
     public var enableLogging = false
+    public var reconnectTimeInterval: TimeInterval = 3
     public var isConnected : Bool {
         return self.status == .fullyConnected
     }
@@ -362,7 +363,7 @@ fileprivate extension SwiftStomp{
 
         try? self.reachability.startNotifier()
 
-        self.reconnectScheduler = Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: { [weak self] (timer) in
+        self.reconnectScheduler = Timer.scheduledTimer(withTimeInterval: reconnectTimeInterval, repeats: true, block: { [weak self] (timer) in
             guard let self = self else {
                 return
             }
