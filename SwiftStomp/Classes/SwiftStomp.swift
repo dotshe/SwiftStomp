@@ -163,7 +163,7 @@ public extension SwiftStomp{
         
         
         //** Connect
-        self.socket = WebSocket(request: urlRequest)
+        self.socket = WebSocket(request: urlRequest, useCustomEngine: false)
         
         if let callbackQueue = self.callbacksThread{
             self.socket.callbackQueue = callbackQueue
